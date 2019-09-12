@@ -22,10 +22,12 @@ struct Polynomial {
     int degree();
     void add(int, int);
     Polynomial operator*(const int);
-    Polynomial operator*(const Polynomial&);
+    Polynomial& operator*(Polynomial const&);
+    friend Polynomial operator*(Polynomial, Polynomial const&);
     Polynomial& operator=(const Polynomial&);
-    Polynomial operator+(const Polynomial&);
+    friend Polynomial operator+(const Polynomial&, const Polynomial&);
     Polynomial operator+=(const Polynomial&);
+    friend Polynomial operator+(Polynomial const&);
     friend ostream& operator<<(ostream&, const Polynomial&);
 
     ~Polynomial();

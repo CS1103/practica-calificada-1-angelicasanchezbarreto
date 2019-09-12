@@ -42,13 +42,16 @@ Polynomial::Polynomial(int) {
 }
 
 
-Polynomial Polynomial::operator+(const Polynomial & Pol) {
+Polynomial operator+=(const Polynomial&, const Polynomial&){
 
-    return Polynomial(coef+Pol.coef, exp+Pol.exp);
 }
 
-Polynomial Polynomial::operator+=(const Polynomial &) {
-    return Polynomial();
+
+Polynomial operator+(Polynomial const& Pol){
+    //auto result = new  ;
+    Polynomial *result = ;
+    result += Pol;
+    return result;
 }
 
 ostream& operator<<(ostream& os, const Polynomial & Pol) {
@@ -68,9 +71,7 @@ Polynomial& Polynomial::operator=(const Polynomial & Pol) {
     return *this;
 }
 
-Polynomial::Polynomial(int num) {
 
-}
 
 Polynomial Polynomial::operator*(const int num) {
     int *lista = new int[size+1];
@@ -78,11 +79,17 @@ Polynomial Polynomial::operator*(const int num) {
         lista[i] = this->coef * num;
     }
 
-    return lista;
+    return *lista;
 }
 
-Polynomial Polynomial::operator*(const Polynomial & Pol) {
+Polynomial operator*(Polynomial Pol, Polynomial const& POL ){
+    return move(Pol*=POL);
+}
 
+Polynomial& Polynomial::operator*(Polynomial const& Pol) {
+        Polynomial temp = new Polynomial(coef, exp);
+        temp *= Pol;
+        return temp;
 }
 
 Polynomial::Polynomial(int exp, int *lista) {
